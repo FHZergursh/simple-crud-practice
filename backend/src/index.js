@@ -2,6 +2,7 @@ import express from "express"
 import cors from "cors"
 import dotenv from "dotenv"
 import { sql } from "./db/db.js";
+import productRoutes from "./routes/productRoute.js"
 
 
 const app = express();
@@ -12,15 +13,12 @@ app.use(express.json())
 
 console.log("test")
 
-app.get("/", (req, res) => {
-    res.json({message: "truth nuke"})
-})
-
+app.use("/api/products", productRoutes)
 
 async function initDB() {
   try {
     await sql`
-    CREATE TABLE IF NOT EXISTS productsFixed (
+    CREATE TABLE IF NOT EXISTS products (
       id SERIAL PRIMARY KEY,
       productName VARCHAR(255) NOT NULL,
       price VARCHAR(255) NOT NULL, 

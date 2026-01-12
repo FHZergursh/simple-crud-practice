@@ -1,10 +1,9 @@
 import express from "express"
+import { createProduct, getAllProducts } from "../controllers/productController.js"
 
 const router = express.Router()
 
-
-app.get("/", (req, res) => {
-    res.json({message: "truth nuke"})
-})
+router.get("/", getAllProducts)
+router.post("/", createProduct)
 
 export default router
